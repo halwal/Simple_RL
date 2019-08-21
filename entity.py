@@ -4,6 +4,8 @@ import tcod as libtcod
 from render_functions import RenderOrder
 
 from math import sqrt
+
+
 class Entity:
     """A generic object to represent players, enemies, items, etc. etc."""
     def __init__(self, x, y, char, color, name, blocks=False, render_order =RenderOrder.CORPSE, fighter=None, ai=None):
@@ -87,6 +89,17 @@ class Entity:
         dy = other.y - self.y
         return math.sqrt(dx ** 2 + dy ** 2)
 
+    def is_in_fov(self, fov_map):
+        if libtcod.map_is_in_fov(fov_map, self.x, self.y):
+            return True
+        else:
+            return False
+
+    def is_in_coor(self, t_x, t_y):
+        if t_x == self.x and t_y == self.y:
+            return True
+        else:
+            return False
 
 
 def get_blocking_entities_at_location(entities, destination_x, destination_y):

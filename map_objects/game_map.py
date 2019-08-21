@@ -8,7 +8,6 @@ from components.fighter import Fighter
 from render_functions import RenderOrder
 
 
-
 class GameMap:
     def __init__(self, width, height):
         self.width = width
